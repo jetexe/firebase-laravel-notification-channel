@@ -1,11 +1,13 @@
 <?php
 
-namespace NotificationChannels\FirebaseCloudMessaging\PlatformSettings;
+namespace AvtoDev\FirebaseCloudMessaging\PlatformSettings;
+
+use Illuminate\Contracts\Support\Arrayable;
 
 /**
  * Apple Push Notification Service specific options.
  */
-class AppleFcmPlatformSettings
+class AppleFcmPlatformSettings implements Arrayable
 {
     /**
      * HTTP request headers defined in Apple Push Notification Service.
@@ -20,7 +22,7 @@ class AppleFcmPlatformSettings
      * If this key is not included in the dictionary, the badge is not changed. To remove the badge, set the value of
      * this key to 0.
      *
-     * @var integer
+     * @var int
      */
     protected $badge;
 
@@ -37,7 +39,7 @@ class AppleFcmPlatformSettings
      * Include this key with a value of 1 to configure a background update notification. When this key is present, the
      * system wakes up your app in the background and delivers the notification to its app delegate.
      *
-     * @var integer
+     * @var int
      */
     protected $content_available;
 
@@ -290,7 +292,7 @@ class AppleFcmPlatformSettings
     }
 
     /**
-     * Build an array
+     * Build an array.
      *
      * @return array
      */

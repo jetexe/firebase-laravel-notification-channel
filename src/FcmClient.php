@@ -1,9 +1,9 @@
 <?php
 
-namespace NotificationChannels\FirebaseCloudMessaging;
+namespace AvtoDev\FirebaseCloudMessaging;
 
 use GuzzleHttp\Client;
-use NotificationChannels\FirebaseCloudMessaging\Receivers\FcmNotificationReceiverInterface;
+use AvtoDev\FirebaseCloudMessaging\Receivers\FcmNotificationReceiverInterface;
 
 class FcmClient
 {
@@ -26,11 +26,11 @@ class FcmClient
     public function __construct(Client $http_client, $endpoint)
     {
         $this->http_client = $http_client;
-        $this->endpoint    = $endpoint;
+        $this->endpoint = $endpoint;
     }
 
     /**
-     * Send message to firebase cloud messaging server
+     * Send message to firebase cloud messaging server.
      *
      * @param FcmNotificationReceiverInterface $receiver
      * @param FcmMessage                       $message
@@ -40,7 +40,6 @@ class FcmClient
     public function sendMessage(FcmNotificationReceiverInterface $receiver, FcmMessage $message)
     {
         $message_payload = $this->filterPayload(\array_merge($receiver->getTarget(), $message->toArray()));
-        var_dump($receiver->getTarget());
 
         return $this->http_client->post($this->endpoint, [
             'json' => [
@@ -50,7 +49,7 @@ class FcmClient
     }
 
     /**
-     * Unset all empty data from payload
+     * Unset all empty data from payload.
      *
      * @param array $payload
      *
@@ -64,7 +63,7 @@ class FcmClient
             }
 
             if (\is_array($value)) {
-                $value         = $this->filterPayload($value);
+                $value = $this->filterPayload($value);
                 $payload[$key] = $value;
             }
 

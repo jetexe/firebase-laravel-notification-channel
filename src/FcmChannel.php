@@ -1,12 +1,13 @@
 <?php
 
-namespace NotificationChannels\FirebaseCloudMessaging;
+namespace AvtoDev\FirebaseCloudMessaging;
 
 use Illuminate\Notifications\Notification;
-use NotificationChannels\FirebaseCloudMessaging\Exceptions\CouldNotSendNotification;
+use AvtoDev\FirebaseCloudMessaging\Exceptions\CouldNotSendNotification;
+use AvtoDev\FirebaseCloudMessaging\Receivers\FcmNotificationReceiverInterface;
 
 /**
- * Channel to send message to Firebase cloud message
+ * Channel to send message to Firebase cloud message.
  */
 class FcmChannel
 {
@@ -35,15 +36,23 @@ class FcmChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (\method_exists($notification, 'toFcm')) {
-            $response = $this->fcm_client->sendMessage(
-                $notifiable->routeNotificationFor('fcm', $notification),
-                $notification->toFcm()
-            );
+        $route_notification_for_fcm = $notifiable->routeNotificationFor('fcm', $notification);
+        
+        if (! ($route_notification_for_fcm instanceof FcmNotificationReceiverInterface)) {
+            return;
+        }
 
-            if ($response->getStatusCode() !== 200) {
-                throw new CouldNotSendNotification((string) $response->getBody());
-            }
+        if (! \method_exists($notification, 'toFcm')) {
+            throw CouldNotSendNotification::invalidNotification();
+        }
+
+        $response = $this->fcm_client->sendMessage(
+            $route_notification_for_fcm,
+            $notification->toFcm()
+        );
+
+        if ($response->getStatusCode() !== 200) {
+            throw new CouldNotSendNotification((string) $response->getBody());
         }
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace NotificationChannels\FirebaseCloudMessaging\Receivers;
+namespace AvtoDev\FirebaseCloudMessaging\Receivers;
 
 class FcmDeviceReceiver implements FcmNotificationReceiverInterface
 {
-    /**     *
+    /**
      * @var string
      */
     protected $token;

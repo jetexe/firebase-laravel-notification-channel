@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\FirebaseCloudMessaging\Receivers;
+namespace AvtoDev\FirebaseCloudMessaging\Receivers;
 
 class FcmTopicReceiver implements FcmNotificationReceiverInterface
 {
@@ -32,6 +32,6 @@ class FcmTopicReceiver implements FcmNotificationReceiverInterface
      */
     public function getTarget()
     {
-        return ['token' => $this->getTopic()];
+        return ['topic' => $this->getTopic()];
     }
 }

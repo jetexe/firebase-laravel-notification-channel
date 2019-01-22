@@ -2,3 +2,6 @@
 build
 composer.phar
 composer.lock
+firebase.json
+storage
+.idea

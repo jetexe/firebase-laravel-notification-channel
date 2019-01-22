@@ -1,17 +1,20 @@
 <?php
 
-namespace NotificationChannels\FirebaseCloudMessaging\PlatformSettings;
+namespace AvtoDev\FirebaseCloudMessaging\PlatformSettings;
+
+use Illuminate\Contracts\Support\Arrayable;
 
 /**
  *  Android specific options for messages sent through FCM connection server.
  */
-class AndroidFcmPlatformSettings
+class AndroidFcmPlatformSettings implements Arrayable
 {
     /**
-     * Priority settings
+     * Priority settings.
      */
-    const PRIORITY_HIGH = 'HIGH',
-        PRIORITY_NORMAL = 'NORMAL';
+    const PRIORITY_HIGH = 'HIGH';
+
+    const PRIORITY_NORMAL = 'NORMAL';
 
     /**
      * An identifier of a group of messages that can be collapsed,
@@ -45,7 +48,7 @@ class AndroidFcmPlatformSettings
 
     /**
      * Arbitrary key/value payload. If present, it will override google.firebase.fcm.v1.Message.data.
-     * An object containing a list of "key": value pairs
+     * An object containing a list of "key": value pairs.
      *
      * @var array
      */
@@ -118,7 +121,7 @@ class AndroidFcmPlatformSettings
 
     /**
      * Variable string values to be used in place of the format specifiers in body_loc_key to use to localize the body
-     * text to the user's current localization
+     * text to the user's current localization.
      *
      * @var string[]
      */
@@ -126,7 +129,7 @@ class AndroidFcmPlatformSettings
 
     /**
      * The key to the title string in the app's string resources to use to localize the title text to the user's
-     * current localization
+     * current localization.
      *
      * @var string
      */
@@ -134,7 +137,7 @@ class AndroidFcmPlatformSettings
 
     /**
      * Variable string values to be used in place of the format specifiers in title_loc_key to use to localize the
-     * title text to the user's current localization
+     * title text to the user's current localization.
      *
      * @var string[]
      */
@@ -155,7 +158,6 @@ class AndroidFcmPlatformSettings
      * A maximum of 4 different collapse keys is allowed at any given time.
      *
      * @param string $collapse_key
-     *
      */
     public function setCollapseKey($collapse_key)
     {
@@ -166,8 +168,6 @@ class AndroidFcmPlatformSettings
      * Message priority. Can take "normal" and "high" values.
      *
      * @param string $priority
-     *
-     *
      */
     public function setPriority($priority)
     {
@@ -178,8 +178,6 @@ class AndroidFcmPlatformSettings
      * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
      *
      * @param string $ttl
-     *
-     *
      */
     public function setTtl($ttl)
     {
@@ -190,8 +188,6 @@ class AndroidFcmPlatformSettings
      * Package name of the application where the registration token must match in order to receive the message.
      *
      * @param string $restricted_package_name
-     *
-     *
      */
     public function setRestrictedPackageName($restricted_package_name)
     {
@@ -200,11 +196,9 @@ class AndroidFcmPlatformSettings
 
     /**
      * Arbitrary key/value payload. If present, it will override google.firebase.fcm.v1.Message.data.
-     * An object containing a list of "key": value pairs
+     * An object containing a list of "key": value pairs.
      *
      * @param array $data
-     *
-     *
      */
     public function setData($data)
     {
@@ -237,8 +231,6 @@ class AndroidFcmPlatformSettings
      * If you don't send this key in the request, FCM displays the launcher icon specified in your app manifest.
      *
      * @param string $icon
-     *
-     *
      */
     public function setIcon($icon)
     {
@@ -348,7 +340,7 @@ class AndroidFcmPlatformSettings
     }
 
     /**
-     * Build an array
+     * Build an array.
      *
      * @return array
      */

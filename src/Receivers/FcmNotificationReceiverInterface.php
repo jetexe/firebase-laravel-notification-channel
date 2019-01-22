@@ -1,11 +1,11 @@
 <?php
 
-namespace NotificationChannels\FirebaseCloudMessaging\Receivers;
+namespace AvtoDev\FirebaseCloudMessaging\Receivers;
 
 interface FcmNotificationReceiverInterface
 {
     /**
-     * Get target (token or topic)
+     * Get target (token or topic).
      *
      * @return array
      */

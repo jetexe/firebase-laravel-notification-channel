@@ -1,15 +1,16 @@
 <?php
 
-namespace NotificationChannels\FirebaseCloudMessaging;
+namespace AvtoDev\FirebaseCloudMessaging;
 
-use NotificationChannels\FirebaseCloudMessaging\PlatformSettings\AndroidFcmPlatformSettings;
-use NotificationChannels\FirebaseCloudMessaging\PlatformSettings\AppleFcmPlatformSettings;
-use NotificationChannels\FirebaseCloudMessaging\PlatformSettings\WebpushFcmPlatformSettings;
+use Illuminate\Contracts\Support\Arrayable;
+use AvtoDev\FirebaseCloudMessaging\PlatformSettings\AppleFcmPlatformSettings;
+use AvtoDev\FirebaseCloudMessaging\PlatformSettings\AndroidFcmPlatformSettings;
+use AvtoDev\FirebaseCloudMessaging\PlatformSettings\WebpushFcmPlatformSettings;
 
 /**
- * Message object contains all supported data and settings
+ * Message object contains all supported data and settings.
  */
-class FcmMessage
+class FcmMessage implements Arrayable
 {
     /**
      * @var array
@@ -58,7 +59,7 @@ class FcmMessage
     {
         $this->android = new AndroidFcmPlatformSettings;
         $this->webpush = new WebpushFcmPlatformSettings;
-        $this->apns    = new AppleFcmPlatformSettings;
+        $this->apns = new AppleFcmPlatformSettings;
     }
 
     /**
@@ -94,7 +95,7 @@ class FcmMessage
     }
 
     /**
-     * Arbitrary key/value payload
+     * Arbitrary key/value payload.
      *
      * An object containing a list of key-value pairs
      *
@@ -156,7 +157,7 @@ class FcmMessage
     }
 
     /**
-     * Build an array
+     * Build an array.
      *
      * @return array
      */
