@@ -2,7 +2,6 @@
 
 namespace AvtoDev\FirebaseCloudMessaging\Test;
 
-use AvtoDev\FirebaseCloudMessaging\Receivers\FcmDeviceReceiver;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;

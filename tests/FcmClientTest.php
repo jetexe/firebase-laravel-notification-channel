@@ -6,8 +6,8 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use AvtoDev\FirebaseCloudMessaging\FcmClient;
 use AvtoDev\FirebaseCloudMessaging\FcmMessage;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use AvtoDev\FirebaseCloudMessaging\Receivers\FcmDeviceReceiver;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 /**
  * Class FcmClientTest.
