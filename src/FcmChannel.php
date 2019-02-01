@@ -37,7 +37,7 @@ class FcmChannel
     public function send($notifiable, Notification $notification)
     {
         $route_notification_for_fcm = $notifiable->routeNotificationFor('fcm', $notification);
-        
+
         if (! ($route_notification_for_fcm instanceof FcmNotificationReceiverInterface)) {
             return;
         }

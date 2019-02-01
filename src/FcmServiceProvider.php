@@ -3,6 +3,7 @@
 namespace AvtoDev\FirebaseCloudMessaging;
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Foundation\Application;
 
@@ -17,11 +18,11 @@ class FcmServiceProvider extends ServiceProvider
             ->needs(FcmClient::class)
             ->give(function (Application $app) {
                 /** @var \Illuminate\Config\Repository $config */
-                $config = $app->make('config');
+                $config        = $app->make('config');
                 $config_driver = $config->get('services.fcm.driver');
 
                 if ($config_driver === 'file') {
-                    $credentials_path = $config->get('services.fcm.credentials_path');
+                    $credentials_path = $config->get('services.fcm.file');
 
                     if (! \file_exists($credentials_path)) {
                         throw new \InvalidArgumentException('file does not exist');
@@ -48,7 +49,7 @@ class FcmServiceProvider extends ServiceProvider
 
                 return new FcmClient(
                     $http_client,
-                    'https://fcm.googleapis.com/v1/projects/'.$credentials['project_id'].'/messages:send'
+                    'https://fcm.googleapis.com/v1/projects/' . $credentials['project_id'] . '/messages:send'
                 );
             });
     }
